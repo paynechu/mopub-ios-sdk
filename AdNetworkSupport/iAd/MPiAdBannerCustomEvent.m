@@ -103,15 +103,7 @@ static const CGFloat kMediumRectangleHeight = 250;
 
 - (ADAdType)closestADAdTypeFromCGSize:(CGSize)size
 {
-    UIUserInterfaceIdiom userInterfaceIdiom = [[[MPCoreInstanceProvider sharedProvider] sharedCurrentDevice] userInterfaceIdiom];
-
-    // On iPad, requests for ads with height beyond a certain threshold should result in medium
-    // rectangle ads.
-    if (userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return size.height >= kMediumRectangleHeight ? ADAdTypeMediumRectangle : ADAdTypeBanner;
-    } else {
-        return ADAdTypeBanner;
-    }
+    return size.height >= kMediumRectangleHeight ? ADAdTypeMediumRectangle : ADAdTypeBanner;
 }
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
